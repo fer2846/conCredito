@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import './AllProspects.scss'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -26,9 +27,11 @@ export const AllProspects = ({prospecto_id,prospecto_nombre,prospecto_apellido1,
                     <Button size="small" color="primary">
                         {prospecto_status}
                     </Button>
-                    <Button size="small" color="primary">
-                        Ver mas
-                    </Button>
+                    <Link to={`/prospecto/${prospecto_id}`}>
+                        <Button size="small" color="primary">
+                            Ver mas
+                        </Button>
+                    </Link>
                     {/*<TransitionsModal prospecto_id={prospecto_id} />*/}
                     
                 </CardActions>

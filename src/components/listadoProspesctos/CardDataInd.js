@@ -1,80 +1,17 @@
-import React,{useState} from 'react';
-import './EvaluProspects.scss';
+import React from 'react'
+import './CardDataInd.scss'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
-
-export const EvaluProspects = ({prospecto_id,prospecto_nombre,prospecto_apellido1,prospecto_apellido2,prospecto_calle,prospecto_numero,prospecto_colonia,prospecto_CP,
-                                prospecto_telefono,prospecto_RFC,prospecto_status,prospecto_imgUrl,prospecto_observaciones}) => {
-
-    const [prospecto, setProspecto] = useState({
-        prospecto_nombre: prospecto_nombre,
-        prospecto_apellido1: prospecto_apellido1,
-        prospecto_apellido2: prospecto_apellido2,
-        prospecto_calle: prospecto_calle,
-        prospecto_numero: prospecto_numero,
-        prospecto_colonia: prospecto_colonia,
-        prospecto_CP: prospecto_CP,
-        prospecto_telefono: prospecto_telefono,
-        prospecto_RFC: prospecto_RFC,
-        prospecto_imgUrl: prospecto_imgUrl,
-        prospecto_status: "",
-        prospecto_observaciones: ''
-    })
-                                
-    const handleChange = (e) =>{
-        setProspecto({
-            ...prospecto,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleAutorizar = () => {
-        setProspecto({
-            ...prospecto, 
-            prospecto_status: 'Autorizado'
-        })
-    }
-
-    const handleRechazar = () => {
-        setProspecto({
-            ...prospecto, 
-            prospecto_status: 'Rechazado'
-        })
-    }
-
-
-    const handleSubmit = () =>{
-
-        //Validacion de los datos
-        if(prospecto.prospecto_observaciones===''){
-
-            alert("El campo observaciones es obligatorio")
-            return
-        }
-
-        //Put una vez pase la validacion
-        const requestInit = {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(prospecto)
-        }
-        fetch('http://localhost:9000/prospectos/' + prospecto_id, requestInit)
-        .then(res => res.text())
-        .then(res => console.log(res))
-
-        console.log('Este es el final' + prospecto)
-
-    }
-
+export const CardDataInd = ({prospecto_id,prospecto_nombre,prospecto_apellido1,prospecto_apellido2,prospecto_calle,prospecto_numero,prospecto_colonia,prospecto_CP,
+                            prospecto_telefono,prospecto_RFC,prospecto_status,prospecto_imgUrl,prospecto_observaciones}) => {
     return (
-        <div className='container-evaluados'>
-            <Card className='prospect-card'>
-                    <CardMedia className='img-prospect' image={`${prospecto_imgUrl}`} />
-                
-                    <CardContent>
-                    <form onSubmit={handleSubmit}>
+        <div className='container-ind-prospect'>
+            <Card className='prospect-card-ind'>
+                <CardMedia className='img-prospect' image={`${prospecto_imgUrl}`} />
+                <CardContent>
+                    <form>
                         <div className="mb-3">
                             <label htmlFor="nombre" className="form-label">Nombre</label>
                             <input type="text" className="form-control" id="nombre" value={prospecto_nombre} readOnly/>
@@ -111,19 +48,16 @@ export const EvaluProspects = ({prospecto_id,prospecto_nombre,prospecto_apellido
                             <label htmlFor="rfc" className="form-label">RFC</label>
                             <input type="text" className="form-control" id="rfc" value={prospecto_RFC} readOnly/>
                         </div>
-                        <div className="mb-3" style={{display:'none'}}>
+                        <div className="mb-3">
                             <label htmlFor="status" className="form-label">Estatus</label>
-                            <input name='prospecto_status' onChange={handleChange} type="text" className="form-control" id="status" />
+                            <input name='prospecto_status' type="text" className="form-control" id="status"  value={prospecto_status} readOnly />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="observaciones" className="form-label">Observaciones</label>
-                            <textarea name='prospecto_observaciones' onChange={handleChange} type="text" className="form-control" id="observaciones" value={prospecto_observaciones}/>
+                            <textarea name='prospecto_observaciones' type="text" className="form-control" id="observaciones" value={prospecto_observaciones} readOnly />
                         </div>
-
-                        <button type="submit" className="btn btn-outline-success" onClick={handleAutorizar}>Autorizar</button>
-                        <button type="submit" className="btn btn-outline-danger" onClick={handleRechazar}>Rechazar</button>
                     </form>
-                    </CardContent>
+                </CardContent>
             </Card>
         </div>
     )

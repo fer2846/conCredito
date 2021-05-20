@@ -1,6 +1,6 @@
-.container-all-prospects{
-    width: 15%;
-    min-width: 230px;
+.container-evaluados{
+    width: 22%;
+    min-width: 370px;
     margin: 0 auto;
     margin-top: 1em;
     height: auto;
@@ -9,14 +9,13 @@
         width: 100%;
 
         .img-prospect{
-            width: 95%;
+            width: 80%;
             margin: 0 auto;
-            height: 180px;
+            height: 25vh;
         }
 
         .botones{
             text-align: center;
         }
     }
-
 }

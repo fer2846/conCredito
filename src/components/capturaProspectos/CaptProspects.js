@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import './CaptProspects.scss'
 
 export const CaptProspects = () => {
 
@@ -66,7 +67,7 @@ export const CaptProspects = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='container-form-insert'>
             <div className='mb-3 row'>
                 <label htmlFor='nombre' className='col-sm-2 col-form-label'>Nombre</label>
                 <div className='col-sm-10'>
