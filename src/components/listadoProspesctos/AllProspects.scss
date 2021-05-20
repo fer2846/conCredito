@@ -1,0 +1,21 @@
+.container-all-prospects{
+    width: 15%;
+    margin: 0 auto;
+    margin-top: 1em;
+    height: auto;
+
+    .prospect-card{
+        width: 100%;
+
+        .img-prospect{
+            width: 95%;
+            margin: 0 auto;
+            height: 180px;
+        }
+
+        .botones{
+            text-align: center;
+        }
+    }
+
+}
